@@ -38,7 +38,7 @@ from Crypto.Hash.CMAC import _SmoothMAC
 from Crypto.Protocol.KDF import _S2V
 
 from Crypto.Util import galois
-
+from Lint import linter
 #: *Electronic Code Book (ECB)*.
 #: This is the simplest encryption mode. Each of the plaintext blocks
 #: is directly encrypted into a ciphertext block, independently of
@@ -400,6 +400,9 @@ class BlockAlgo:
         else:
             self._cipher = factory.new(key, *args, **kwargs)
             self.IV = self._cipher.IV
+ 
+        if self.IV is not None and self.mode not in [MODE_ECB, MODE_CTR]:
+          linter.add_iv(self.IV)
 
     def _start_gcm(self, factory, key, *args, **kwargs):
 

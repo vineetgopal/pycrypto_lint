@@ -410,8 +410,9 @@ kw = {'name':"pycrypto",
                   "Crypto.Protocol",
                   "Crypto.PublicKey",
                   "Crypto.Signature",
-                  "Crypto.IO"],
-      'package_dir' : { "Crypto": "lib/Crypto" },
+                  "Crypto.IO",
+                  "Lint"],
+      'package_dir' : { "Crypto": "lib/Crypto", "Lint": "lib/Lint" },
       'ext_modules': plat_ext + [
             # _fastmath (uses GNU mp library)
             Extension("Crypto.PublicKey._fastmath",

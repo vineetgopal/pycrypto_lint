@@ -84,6 +84,7 @@ if sys.version_info[0] == 2 and sys.version_info[1] == 1:
 from Crypto.Cipher import blockalgo
 from Crypto.Cipher import _AES
 from Crypto.Util import cpuid
+from Lint import linter
 # Import _AESNI. If AES-NI is not available or _AESNI has not been built, set
 # _AESNI to None.
 try:
@@ -101,7 +102,7 @@ class AESCipher (blockalgo.BlockAlgo):
         """Initialize an AES cipher object
 
         See also `new()` at the module level."""
-
+        linter.check_AES_parameters(key, *args, **kwargs)
         # Check if the use_aesni was specified.
         use_aesni = True
         if kwargs.has_key('use_aesni'):
